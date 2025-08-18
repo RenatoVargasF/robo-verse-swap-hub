@@ -37,11 +37,6 @@ export const Navigation = () => {
             <a href="/academy" className="text-sm font-medium hover:text-primary transition-colors">
               Academia
             </a>
-            <div className="flex items-center gap-1">
-              <a href="/pricing" className="text-sm font-medium hover:text-primary transition-colors">
-                Planos
-              </a>
-            </div>
           </div>
 
           {/* Auth Buttons */}

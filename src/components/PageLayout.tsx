@@ -1,4 +1,5 @@
 import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 import { ReactNode } from "react";
 
 interface PageLayoutProps {
@@ -9,9 +10,9 @@ interface PageLayoutProps {
 
 export const PageLayout = ({ children, title, description }: PageLayoutProps) => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Navigation />
-      <main className="pt-20">
+      <main className="pt-20 flex-grow">
         {(title || description) && (
           <div className="bg-gradient-to-b from-background to-muted/10 py-16 border-b border-border/20">
             <div className="container mx-auto px-6 text-center">
@@ -28,6 +29,7 @@ export const PageLayout = ({ children, title, description }: PageLayoutProps) =>
         )}
         {children}
       </main>
+      <Footer />
     </div>
   );
 };
