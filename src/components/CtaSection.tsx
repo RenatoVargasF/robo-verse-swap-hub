@@ -14,10 +14,11 @@ export const CtaSection = () => {
           </p>
           
           <Button 
+            asChild
             size="lg" 
             className="bg-gradient-primary hover:scale-105 transition-all duration-300 glow-neon text-lg px-8 py-6"
           >
-            Explorar Robôs
+            <a href="/marketplace">Explorar Robôs</a>
           </Button>
         </div>
       </div>

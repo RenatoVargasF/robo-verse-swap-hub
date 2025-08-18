@@ -35,11 +35,11 @@ export const HeroSection = () => {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-          <Button size="lg" className="bg-gradient-primary hover:scale-105 transition-all duration-300 glow-neon">
-            Começar Agora
+          <Button asChild size="lg" className="bg-gradient-primary hover:scale-105 transition-all duration-300 glow-neon">
+            <a href="/marketplace">Começar Agora</a>
           </Button>
-          <Button variant="outline" size="lg" className="border-primary/20 hover:bg-primary/10">
-            Ver Demonstração
+          <Button asChild variant="outline" size="lg" className="border-primary/20 hover:bg-primary/10">
+            <a href="/products">Ver Demonstração</a>
           </Button>
         </div>
 

@@ -22,38 +22,38 @@ export const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
+            <a href="/" className="text-sm font-medium hover:text-primary transition-colors">
               Início
             </a>
-            <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
+            <a href="/marketplace" className="text-sm font-medium hover:text-primary transition-colors">
               Marketplace
             </a>
-            <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
+            <a href="/dashboard" className="text-sm font-medium hover:text-primary transition-colors">
               Dashboard
             </a>
-            <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
-              Otimizador IA
+            <a href="/products" className="text-sm font-medium hover:text-primary transition-colors">
+              Produtos
+            </a>
+            <a href="/academy" className="text-sm font-medium hover:text-primary transition-colors">
+              Academia
             </a>
             <div className="flex items-center gap-1">
-              <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
-                Soluções
+              <a href="/pricing" className="text-sm font-medium hover:text-primary transition-colors">
+                Planos
               </a>
-              <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
             </div>
           </div>
 
           {/* Auth Buttons */}
           <div className="hidden md:flex items-center gap-4">
-            <div className="flex items-center gap-1">
-              <span className="text-sm font-medium">Conta</span>
-              <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </div>
-            <Button variant="outline" size="sm" className="border-primary/20 hover:bg-primary/10">
+            <a href="/support" className="text-sm font-medium hover:text-primary transition-colors">
+              Suporte
+            </a>
+            <a href="/login" className="text-sm font-medium hover:text-primary transition-colors">
               Entrar
+            </a>
+            <Button asChild variant="outline" size="sm" className="border-primary/20 hover:bg-primary/10">
+              <a href="/register">Cadastrar</a>
             </Button>
           </div>
 
