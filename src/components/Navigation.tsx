@@ -37,6 +37,18 @@ export const Navigation = () => {
             <a href="/academy" className="text-sm font-medium hover:text-primary transition-colors">
               Academia
             </a>
+            <div className="relative group">
+              <span className="text-sm font-medium hover:text-primary transition-colors cursor-pointer">
+                Mais
+              </span>
+              <div className="absolute top-full left-0 mt-2 w-48 bg-background border border-border/20 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <a href="/analytics" className="block px-4 py-2 text-sm hover:bg-muted/50">Centro de Análises</a>
+                <a href="/community" className="block px-4 py-2 text-sm hover:bg-muted/50">Comunidade</a>
+                <a href="/downloads" className="block px-4 py-2 text-sm hover:bg-muted/50">Downloads</a>
+                <a href="/partners" className="block px-4 py-2 text-sm hover:bg-muted/50">Parcerias</a>
+                <a href="/status" className="block px-4 py-2 text-sm hover:bg-muted/50">Status</a>
+              </div>
+            </div>
           </div>
 
           {/* Auth Buttons */}

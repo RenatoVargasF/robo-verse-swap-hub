@@ -4,8 +4,30 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Switch } from "@/components/ui/switch";
+import { OnboardingTour } from "@/components/OnboardingTour";
+import { useState, useEffect } from "react";
 
 const Dashboard = () => {
+  const [showTour, setShowTour] = useState(false);
+
+  // Check if user is new (in a real app, this would come from user data)
+  useEffect(() => {
+    const hasSeenTour = localStorage.getItem('dashboard-tour-completed');
+    if (!hasSeenTour) {
+      // Delay to let the page load
+      setTimeout(() => setShowTour(true), 1000);
+    }
+  }, []);
+
+  const completeTour = () => {
+    localStorage.setItem('dashboard-tour-completed', 'true');
+    setShowTour(false);
+  };
+
+  const skipTour = () => {
+    localStorage.setItem('dashboard-tour-completed', 'true');
+    setShowTour(false);
+  };
   const activeRobots = [
     {
       id: 1,
@@ -50,13 +72,14 @@ const Dashboard = () => {
   ];
 
   return (
-    <PageLayout 
-      title="Dashboard"
-      description="Monitore seus robôs ativos, performance e histórico de operações em tempo real."
-    >
-      <div className="container mx-auto px-6 py-12">
-        {/* Overview Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+    <>
+      <PageLayout 
+        title="Dashboard"
+        description="Monitore seus robôs ativos, performance e histórico de operações em tempo real."
+      >
+        <div className="container mx-auto px-6 py-12">
+          {/* Overview Stats */}
+          <div id="stats-section" className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <Card className="p-6 bg-gradient-card border-border/20">
             <div className="flex items-center justify-between mb-2">
               <h3 className="text-sm font-medium text-muted-foreground">Saldo Total</h3>
@@ -104,7 +127,7 @@ const Dashboard = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Active Robots */}
-          <div>
+          <div id="robots-section">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold">Robôs Ativos</h2>
               <Button asChild variant="outline" size="sm">
@@ -172,7 +195,7 @@ const Dashboard = () => {
           </div>
 
           {/* Recent Trades */}
-          <div>
+          <div id="trades-section">
             <h2 className="text-2xl font-bold mb-6">Operações Recentes</h2>
             
             <Card className="p-6 bg-gradient-card border-border/20">
@@ -207,17 +230,56 @@ const Dashboard = () => {
               </Button>
             </Card>
 
-            {/* Performance Chart Placeholder */}
-            <Card className="p-6 mt-6 bg-gradient-card border-border/20">
-              <h3 className="font-semibold mb-4">Performance dos Últimos 7 Dias</h3>
-              <div className="h-40 bg-muted/10 rounded-lg flex items-center justify-center">
-                <p className="text-muted-foreground">Gráfico de Performance</p>
+            {/* Performance Chart */}
+            <div id="chart-section">
+              <Card className="p-6 mt-6 bg-gradient-card border-border/20">
+          <h3 className="font-semibold mb-4">Performance dos Últimos 7 Dias</h3>
+          <div className="h-48 bg-muted/10 rounded-lg flex items-center justify-center relative overflow-hidden">
+            {/* Simulated Chart */}
+            <svg className="w-full h-full" viewBox="0 0 400 200">
+              <defs>
+                <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.3"/>
+                  <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0"/>
+                </linearGradient>
+              </defs>
+              <path 
+                d="M 20 150 L 60 120 L 100 100 L 140 80 L 180 70 L 220 60 L 260 50 L 300 40 L 340 30 L 380 25" 
+                stroke="hsl(var(--primary))" 
+                strokeWidth="2" 
+                fill="none"
+              />
+              <path 
+                d="M 20 150 L 60 120 L 100 100 L 140 80 L 180 70 L 220 60 L 260 50 L 300 40 L 340 30 L 380 25 L 380 200 L 20 200 Z" 
+                fill="url(#gradient)"
+              />
+              {/* Data points */}
+              <circle cx="60" cy="120" r="3" fill="hsl(var(--primary))" />
+              <circle cx="140" cy="80" r="3" fill="hsl(var(--primary))" />
+              <circle cx="220" cy="60" r="3" fill="hsl(var(--primary))" />
+              <circle cx="300" cy="40" r="3" fill="hsl(var(--primary))" />
+              <circle cx="380" cy="25" r="3" fill="hsl(var(--primary))" />
+            </svg>
+            <div className="absolute inset-0 flex items-center justify-center bg-background/20 backdrop-blur-sm">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-neon mb-2">+8.7%</div>
+                <p className="text-sm text-muted-foreground">Crescimento na semana</p>
               </div>
-            </Card>
+            </div>
+          </div>
+              </Card>
+            </div>
           </div>
         </div>
       </div>
     </PageLayout>
+    
+    <OnboardingTour
+      isVisible={showTour}
+      onComplete={completeTour}
+      onSkip={skipTour}
+    />
+  </>
   );
 };
 
